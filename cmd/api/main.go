@@ -4,9 +4,16 @@ import (
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/joho/godotenv"
 )
 
 func main()  {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	server := http.Server{
 		Addr: ":4000",
 		ReadTimeout: 10 * time.Second,
@@ -15,7 +22,7 @@ func main()  {
 	}
 
 	log.Println("listening on :4000")
-	err := server.ListenAndServe(); if err != nil {
+	err = server.ListenAndServe(); if err != nil {
 		log.Fatal(err)
 	}
 }
