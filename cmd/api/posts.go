@@ -24,7 +24,7 @@ func (app *application) createNewPost(w http.ResponseWriter, r *http.Request) {
 	}
 	defer file.Close()
 
-	ctx, cancel := context.WithTimeout(context.Background(), 10 * time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 30 * time.Second)
 	defer cancel()
 	
 	_, err = app.s3Client.PutObject(ctx, &s3.PutObjectInput{
