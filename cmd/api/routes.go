@@ -7,7 +7,7 @@ func routes() http.Handler {
 
 	mux.HandleFunc("GET /v1/posts", getAllPost)
 	mux.HandleFunc("POST /v1/posts", createNewPost)
-	mux.HandleFunc("DELETE /v1/posts/:id", deletePost)
+	mux.HandleFunc("DELETE /v1/posts/{id}", deletePost)
 
 	return mux
 }
