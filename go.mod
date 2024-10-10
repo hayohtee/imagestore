@@ -3,6 +3,7 @@ module github.com/hayohtee/imagestore
 go 1.23.0
 
 require (
+	github.com/aws/aws-sdk-go-v2 v1.32.2
 	github.com/aws/aws-sdk-go-v2/config v1.27.43
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.41
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.65.2
@@ -10,7 +11,6 @@ require (
 )
 
 require (
-	github.com/aws/aws-sdk-go-v2 v1.32.2 // indirect
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.6.6 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.16.17 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.3.21 // indirect
