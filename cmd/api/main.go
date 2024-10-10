@@ -22,7 +22,7 @@ func main() {
 	awsConfig, err := config.LoadDefaultConfig(
 		context.TODO(),
 		config.WithRegion(os.Getenv("AWS_BUCKET_REGION")),
-		config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(os.Getenv("AWS_ACCESS_KE"), os.Getenv("AWS_SECRET_ACCESS_KEY"), "")),
+		config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(os.Getenv("AWS_ACCESS_KEY"), os.Getenv("AWS_SECRET_ACCESS_KEY"), "")),
 	)
 
 	app := application{
