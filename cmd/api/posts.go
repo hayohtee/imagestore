@@ -27,9 +27,16 @@ func (app *application) createNewPost(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(context.Background(), 30 * time.Second)
 	defer cancel()
 	
+	randBytes, err := generateRandomBytes(32)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		return
+	}
+
 	_, err = app.s3Client.PutObject(ctx, &s3.PutObjectInput{
 		Bucket: aws.String(os.Getenv("AWS_BUCKET_NAME")),
-		Key: aws.String(header.Filename),
+		Key: aws.String(string(randBytes)),
 		Body: file,
 		ContentType: aws.String("images/*"),
 	})
