@@ -27,7 +27,7 @@ func (app *application) createNewPost(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(context.Background(), 30 * time.Second)
 	defer cancel()
 	
-	randBytes, err := generateRandomBytes(32)
+	uniqueFileName, err := generateUniqueFilename(header.Filename, header.Header.Get("Content-Type"))
 	if err != nil {
 		log.Println(err)
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
@@ -36,7 +36,7 @@ func (app *application) createNewPost(w http.ResponseWriter, r *http.Request) {
 
 	_, err = app.s3Client.PutObject(ctx, &s3.PutObjectInput{
 		Bucket: aws.String(os.Getenv("AWS_BUCKET_NAME")),
-		Key: aws.String(string(randBytes)),
+		Key: aws.String(uniqueFileName),
 		Body: file,
 		ContentType: aws.String("images/*"),
 	})
